@@ -23,21 +23,20 @@ $mtimes=fread($myfile,filesize("/home/allsky/daily"));
 echo "<font color='white'>";
 echo '<body style="background-color:black">';
 
-$ADawn=substr($mtimes,0,5);
-$NDawn=substr($mtimes,6,5);
-$CDawn=substr($mtimes,12,5);
-$SRise=substr($mtimes,18,5);
-$SSet=substr($mtimes,24,5);
-$CSet=substr($mtimes,30,5);
-$NSet=substr($mtimes,36,5);
-$ASet=substr($mtimes,42,5);
-$VDay=substr($mtimes,52,5);
-$VNight=substr($mtimes,58,5);
-
-$VidAM=substr($mtimes,58,5);
-$VidPM=substr($mtimes,58,5);
-$CamAM=substr($mtimes,64,5);
-$CamPM=substr($mtimes,70,5);
+$ADawn=substr($mtimes,1,5);
+$NDawn=substr($mtimes,21,6);
+$CDawn=substr($mtimes,27,6);
+$SRise=substr($mtimes,33,6);
+$SSet=substr($mtimes,39,6);
+$CSet=substr($mtimes,45,6);
+$NSet=substr($mtimes,51,6);
+$ASet=substr($mtimes,56,6);
+$VDay=substr($mtimes,81,6);
+$VNight=substr($mtimes,87,6);
+$VidAM=substr($mtimes,94,6);
+$VidPM=substr($mtimes,100,6);
+$CamAM=substr($mtimes,94,6);
+$CamPM=substr($mtimes,100,6);
 
 echo '<table>
 <table style="width:100%; border: 1px solid black">
