@@ -21,28 +21,28 @@ fclose($statefile);
 // ***************************************************************
 //  Get the outside temperature
 // Comment out this section if you do not have a DS18B20 installed.
-$handle = fopen("/sys/bus/w1/devices/w1_bus_master1/w1_master_slaves", "r");
-if ($handle) {
-    while (($sensors = fgets($handle)) !== false) {
-           $sensor = "/sys/bus/w1/devices/".trim($sensors)."/w1_slave";
-           $sensorhandle = fopen($sensor, "r");
-             if ($sensorhandle) {
-                 $thermometerReading = fread($sensorhandle, filesize($sensor));
-                 fclose($sensorhandle);
-                 // We want the value after the t= on the 2nd line
-                 preg_match("/t=(.+)/", preg_split("/\n/", $thermometerReading)[1], $matches);
-                 $celsius = round($matches[1] / 1000, PHP_ROUND_HALF_UP); //round the results
-                 $fahrenheit = round($celsius*9/5+32, PHP_ROUND_HALF_UP);
+//$handle = fopen("/sys/bus/w1/devices/w1_bus_master1/w1_master_slaves", "r");
+//if ($handle) {
+//    while (($sensors = fgets($handle)) !== false) {
+//           $sensor = "/sys/bus/w1/devices/".trim($sensors)."/w1_slave";
+//           $sensorhandle = fopen($sensor, "r");
+//             if ($sensorhandle) {
+//                 $thermometerReading = fread($sensorhandle, filesize($sensor));
+//                 fclose($sensorhandle);
+//                 // We want the value after the t= on the 2nd line
+//                 preg_match("/t=(.+)/", preg_split("/\n/", $thermometerReading)[1], $matches);
+//                 $celsius = round($matches[1] / 1000, PHP_ROUND_HALF_UP); //round the results
+//                 $fahrenheit = round($celsius*9/5+32, PHP_ROUND_HALF_UP);
                  //print "Sensor ID#: $sensors = $celsius &deg;C / $fahrenheit &deg;F<br>";
-                 $sensors++;
-             } else {
-                print "No temperature read!";
-             }
-    }
-    fclose($handle);
-} else {
-    print "No sensors found!";
-}
+//                 $sensors++;
+//             } else {
+//                print "No temperature read!";
+//             }
+//    }
+//    fclose($handle);
+//} else {
+//    print "No sensors found!";
+//}
 // ***************************************************************
 
 // Get the CPU temperature
@@ -57,14 +57,7 @@ fclose($f);
 $myfile = fopen("/home/allsky/daily", "r") or die("Unable to open file!");
 $mtimes=fread($myfile,filesize("/home/allsky/daily"));
 
-//$ADawn=substr($mtimes,0,5);
-//$NDawn=substr($mtimes,6,5);
-//$CDawn=substr($mtimes,12,5);
-//$SRise=substr($mtimes,18,5);
-$SSet=substr($mtimes,24,5);
-//$CSet=substr($mtimes,30,5);
-//$NSet=substr($mtimes,36,5);
-//$ASet=substr($mtimes,42,5);
+$SSet=substr($mtimes,39,5);
 $sunset = 'Sunset: '. $SSet;
 fclose($myfile);
 
